@@ -1,0 +1,16 @@
+{
+    "name": "univer-sheets-umd",
+    "description": "",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "http-server ."
+    },
+    "engines": {
+        "npm": ">=7.0.0"
+    },
+    "dependencies": {
+        "http-server": "^14.1.1"
+    }
+}
