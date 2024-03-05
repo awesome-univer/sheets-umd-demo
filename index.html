@@ -31,6 +31,7 @@
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/core/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/design/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-render/lib/umd/index.js"></script>
+    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-numfmt/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-formula/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/ui/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets/lib/umd/index.js"></script>
@@ -44,32 +45,46 @@
     <div id="app"></app>
 
     <script>
+      var { 
+        UniverCore,
+        UniverDesign,
+        UniverDocs,
+        UniverDocsUi,
+        UniverEngineRender, 
+        UniverUi,
+        UniverSheets,
+        UniverSheetsUi,
+        UniverSheetsNumfmt,
+        UniverEngineFormula,
+        UniverSheetsFormula 
+      } = window
+
       // univer
-      var univer = new window.UniverCore.Univer({
-        theme: window.UniverDesign.defaultTheme,
-        locale: window.UniverCore.LocaleType.ZH_CN,
-        logLevel: window.UniverCore.LogLevel.VERBOSE,
+      var univer = new UniverCore.Univer({
+        theme: UniverDesign.defaultTheme,
+        locale: UniverCore.LocaleType.ZH_CN,
+        logLevel: UniverCore.LogLevel.VERBOSE,
       });
 
       // core plugins
-      univer.registerPlugin(window.UniverDocs.UniverDocsPlugin, {
+      univer.registerPlugin(UniverDocs.UniverDocsPlugin, {
         hasScroll: false,
       });
-      univer.registerPlugin(window.UniverDocsUi.UniverDocsUIPlugin);
-      univer.registerPlugin(window.UniverEngineRender.UniverRenderEnginePlugin);
-      univer.registerPlugin(window.UniverUi.UniverUIPlugin, {
+      univer.registerPlugin(UniverDocsUi.UniverDocsUIPlugin);
+      univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
+      univer.registerPlugin(UniverUi.UniverUIPlugin, {
         container: "app",
         header: true,
         toolbar: true,
         footer: true,
       });
-      univer.registerPlugin(window.UniverSheets.UniverSheetsPlugin);
-      univer.registerPlugin(window.UniverSheetsUi.UniverSheetsUIPlugin);
+      univer.registerPlugin(UniverSheets.UniverSheetsPlugin);
+      univer.registerPlugin(UniverSheetsUi.UniverSheetsUIPlugin);
 
       // sheet feature plugins
-      univer.registerPlugin(window.UniverSheetsNumfmt.UniverSheetsNumfmtPlugin);
-      univer.registerPlugin(window.UniverEngineFormula.UniverFormulaEnginePlugin);
-      univer.registerPlugin(window.UniverSheetsFormula.UniverSheetsFormulaPlugin);
+      univer.registerPlugin(UniverSheetsNumfmt.UniverSheetsNumfmtPlugin);
+      univer.registerPlugin(UniverEngineFormula.UniverFormulaEnginePlugin);
+      univer.registerPlugin(UniverSheetsFormula.UniverSheetsFormulaPlugin);
 
       // create univer sheet instance
       univer.createUniverSheet({});
