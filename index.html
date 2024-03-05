@@ -35,6 +35,7 @@
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/ui/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/docs/lib/umd/index.js"></script>
+    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/docs-ui/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-ui/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-formula/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-numfmt/lib/umd/index.js"></script>
@@ -54,6 +55,7 @@
       univer.registerPlugin(window.UniverDocs.UniverDocsPlugin, {
         hasScroll: false,
       });
+      univer.registerPlugin(window.UniverDocsUi.UniverDocsUIPlugin);
       univer.registerPlugin(window.UniverEngineRender.UniverRenderEnginePlugin);
       univer.registerPlugin(window.UniverUi.UniverUIPlugin, {
         container: "app",
