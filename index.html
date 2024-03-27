@@ -28,6 +28,7 @@
     <script crossorigin="anonymous" src="https://unpkg.com/@wendellhu/redi@0.12.13/dist/redi.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@wendellhu/redi@0.12.13/dist/react-bindings.js"></script>
 
+    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/protocol/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/core/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/design/lib/umd/index.js"></script>
     <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-render/lib/umd/index.js"></script>
@@ -51,42 +52,36 @@
         UniverDocs,
         UniverDocsUi,
         UniverEngineRender, 
+        UniverSheetsFormula,
         UniverUi,
         UniverSheets,
         UniverSheetsUi,
         UniverSheetsNumfmt,
         UniverEngineFormula,
-        UniverSheetsFormula 
       } = window
 
-      // univer
       var univer = new UniverCore.Univer({
         theme: UniverDesign.defaultTheme,
-        locale: UniverCore.LocaleType.ZH_CN,
-        logLevel: UniverCore.LogLevel.VERBOSE,
       });
 
-      // core plugins
+      univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
+      univer.registerPlugin(UniverEngineFormula.UniverFormulaEnginePlugin);
+
+      univer.registerPlugin(UniverUi.UniverUIPlugin, {
+        container: 'app',
+        header: true,
+        footer: true,
+      });
+
       univer.registerPlugin(UniverDocs.UniverDocsPlugin, {
         hasScroll: false,
       });
       univer.registerPlugin(UniverDocsUi.UniverDocsUIPlugin);
-      univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
-      univer.registerPlugin(UniverUi.UniverUIPlugin, {
-        container: "app",
-        header: true,
-        toolbar: true,
-        footer: true,
-      });
+
       univer.registerPlugin(UniverSheets.UniverSheetsPlugin);
       univer.registerPlugin(UniverSheetsUi.UniverSheetsUIPlugin);
-
-      // sheet feature plugins
-      univer.registerPlugin(UniverSheetsNumfmt.UniverSheetsNumfmtPlugin);
-      univer.registerPlugin(UniverEngineFormula.UniverFormulaEnginePlugin);
       univer.registerPlugin(UniverSheetsFormula.UniverSheetsFormulaPlugin);
 
-      // create univer sheet instance
       univer.createUniverSheet({});
     </script>
   </body>
