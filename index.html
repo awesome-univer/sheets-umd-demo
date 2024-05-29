@@ -15,31 +15,9 @@
       }
     </style>
 
-    <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/design/lib/index.css" />
-    <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/ui/lib/index.css" />
-    <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/sheets-ui/lib/index.css" />
-    <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/sheets-formula/lib/index.css" />
-    <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/sheets-numfmt/lib/index.css" />
-
-    <script crossorigin="anonymous" src="https://unpkg.com/clsx@2.0.0/dist/clsx.min.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@wendellhu/redi/dist/redi.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@wendellhu/redi/dist/react-bindings.js"></script>
-
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/protocol/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/core/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/design/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-render/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/engine-formula/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/ui/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/docs/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/docs-ui/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-ui/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-formula/lib/umd/index.js"></script>
-    <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/sheets-numfmt/lib/umd/index.js"></script>
+  <script src="https://unpkg.com/@univerjs/umd/lib/univer.full.umd.js"></script>
+  <script src="https://unpkg.com/@univerjs/umd/lib/locale/zh-CN.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@univerjs/umd/lib/univer.css">
   </head>
   <body>
     <div id="app"></app>
@@ -62,26 +40,27 @@
       var univer = new UniverCore.Univer({
         theme: UniverDesign.defaultTheme,
       });
-
+ 
       univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
       univer.registerPlugin(UniverEngineFormula.UniverFormulaEnginePlugin);
-
+  
       univer.registerPlugin(UniverUi.UniverUIPlugin, {
-        container: 'app',
-        header: true,
-        footer: true,
+        container: "app",
       });
-
+  
       univer.registerPlugin(UniverDocs.UniverDocsPlugin, {
         hasScroll: false,
       });
       univer.registerPlugin(UniverDocsUi.UniverDocsUIPlugin);
-
+  
       univer.registerPlugin(UniverSheets.UniverSheetsPlugin);
       univer.registerPlugin(UniverSheetsUi.UniverSheetsUIPlugin);
+      univer.registerPlugin(UniverSheetsNumfmt.UniverSheetsNumfmtPlugin);
       univer.registerPlugin(UniverSheetsFormula.UniverSheetsFormulaPlugin);
 
-      univer.createUniverSheet({});
+      univer.createUnit(UniverCore.UniverInstanceType.UNIVER_SHEET, {})
+ 
+      var univerAPI = UniverFacade.FUniver.newAPI(univer)
     </script>
   </body>
 </html>
