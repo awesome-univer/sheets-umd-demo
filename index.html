@@ -16,6 +16,7 @@
     </style>
 
   <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd/lib/univer.full.umd.js"></script>
+  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd/lib/locale/en-US.js"></script>
   <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd/lib/locale/zh-CN.js"></script>
   <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/umd/lib/univer.css">
   </head>
@@ -39,6 +40,11 @@
 
       var univer = new UniverCore.Univer({
         theme: UniverDesign.defaultTheme,
+        locale: UniverCore.LocaleType.EN_US,
+        locales: {
+          [UniverCore.LocaleType.ZH_CN]: UniverUMD['zh-CN'],
+          [UniverCore.LocaleType.EN_US]: UniverUMD['en-US'],
+        },
       });
  
       univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
