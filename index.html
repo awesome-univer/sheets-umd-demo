@@ -15,13 +15,13 @@
       }
     </style>
 
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.5/lib/univer.full.umd.js"></script>
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.5/lib/locale/en-US.js"></script>
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.5/lib/locale/zh-CN.js"></script>
-  <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/umd@0.2.5/lib/univer.css">
+  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/univer.full.umd.js"></script>
+  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/locale/en-US.js"></script>
+  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/locale/zh-CN.js"></script>
+  <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/umd@0.2.15/lib/univer.css">
   </head>
   <body>
-    <div id="app"></app>
+    <div id="app"></div>
 
     <script>
       var { 
@@ -54,9 +54,7 @@
         container: "app",
       });
   
-      univer.registerPlugin(UniverDocs.UniverDocsPlugin, {
-        hasScroll: false,
-      });
+      univer.registerPlugin(UniverDocs.UniverDocsPlugin);
       univer.registerPlugin(UniverDocsUi.UniverDocsUIPlugin);
   
       univer.registerPlugin(UniverSheets.UniverSheetsPlugin);
