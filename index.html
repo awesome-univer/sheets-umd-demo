@@ -1,70 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Univer</title>
-    <style>
-      html,
-      body,
-      #app {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/univer.full.umd.js"></script>
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/locale/en-US.js"></script>
-  <script crossorigin="anonymous" src="https://unpkg.com/@univerjs/umd@0.2.15/lib/locale/zh-CN.js"></script>
-  <link crossorigin="anonymous" rel="stylesheet" href="https://unpkg.com/@univerjs/umd@0.2.15/lib/univer.css">
-  </head>
-  <body>
-    <div id="app"></div>
-
-    <script>
-      var { 
-        UniverCore,
-        UniverDesign,
-        UniverDocs,
-        UniverDocsUi,
-        UniverEngineRender, 
-        UniverSheetsFormula,
-        UniverUi,
-        UniverSheets,
-        UniverSheetsUi,
-        UniverSheetsNumfmt,
-        UniverEngineFormula,
-      } = window
-
-      var univer = new UniverCore.Univer({
-        theme: UniverDesign.defaultTheme,
-        locale: UniverCore.LocaleType.EN_US,
-        locales: {
-          [UniverCore.LocaleType.ZH_CN]: UniverUMD['zh-CN'],
-          [UniverCore.LocaleType.EN_US]: UniverUMD['en-US'],
-        },
-      });
+<head>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/rxjs/dist/bundles/rxjs.umd.min.js"></script>
  
-      univer.registerPlugin(UniverEngineRender.UniverRenderEnginePlugin);
-      univer.registerPlugin(UniverEngineFormula.UniverFormulaEnginePlugin);
+  <script src="https://unpkg.com/@univerjs/presets/lib/umd/index.js"></script>
   
-      univer.registerPlugin(UniverUi.UniverUIPlugin, {
-        container: "app",
-      });
-  
-      univer.registerPlugin(UniverDocs.UniverDocsPlugin);
-      univer.registerPlugin(UniverDocsUi.UniverDocsUIPlugin);
-  
-      univer.registerPlugin(UniverSheets.UniverSheetsPlugin);
-      univer.registerPlugin(UniverSheetsUi.UniverSheetsUIPlugin);
-      univer.registerPlugin(UniverSheetsNumfmt.UniverSheetsNumfmtPlugin);
-      univer.registerPlugin(UniverSheetsFormula.UniverSheetsFormulaPlugin);
-
-      univer.createUnit(UniverCore.UniverInstanceType.UNIVER_SHEET, {})
+  <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/index.js"></script>
+  <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/locales/en-US.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@univerjs/preset-sheets-core/lib/index.css" />
+  <style>
+    html,
+    body,
+    #root,
+    #app {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
  
-      var univerAPI = UniverFacade.FUniver.newAPI(univer)
-    </script>
-  </body>
-</html>
+  <script>
+    const { createUniver, LocaleType, Tools, defaultTheme } = UniverPresets
+    const { UniverSheetsCorePreset } = UniverPresetSheetsCore
+ 
+    const { univerAPI } = createUniver({
+      locale: LocaleType.EN_US,
+      locales: {
+        enUS: Tools.deepMerge(
+          {},
+          UniverPresetSheetsCoreEnUS,
+        ),
+      },
+      theme: defaultTheme,
+      presets: [
+        UniverSheetsCorePreset(),
+      ],
+      plugins: []
+    });
+ 
+    univerAPI.createUniverSheet({ name: 'Test Sheet' }); // Create your first sheet named 'Test Sheet'
+  </script>
+</body>
