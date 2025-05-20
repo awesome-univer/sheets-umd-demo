@@ -1,46 +1,116 @@
-<head>
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/rxjs/dist/bundles/rxjs.umd.min.js"></script>
- 
-  <script src="https://unpkg.com/@univerjs/presets/lib/umd/index.js"></script>
-  
-  <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/index.js"></script>
-  <script src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/locales/en-US.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@univerjs/preset-sheets-core/lib/index.css" />
-  <style>
-    html,
-    body,
-    #root,
-    #app {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="app"></div>
- 
-  <script>
-    const { createUniver, LocaleType, Tools, defaultTheme } = UniverPresets
-    const { UniverSheetsCorePreset } = UniverPresetSheetsCore
- 
-    const { univerAPI } = createUniver({
-      locale: LocaleType.EN_US,
-      locales: {
-        enUS: Tools.deepMerge(
-          {},
-          UniverPresetSheetsCoreEnUS,
-        ),
-      },
-      theme: defaultTheme,
-      presets: [
-        UniverSheetsCorePreset(),
-      ],
-      plugins: []
-    });
- 
-    univerAPI.createUniverSheet({ name: 'Test Sheet' }); // Create your first sheet named 'Test Sheet'
-  </script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Univer Sheets</title>
+
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/rxjs/dist/bundles/rxjs.umd.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/echarts/dist/echarts.min.js"
+    ></script>
+
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/presets/lib/umd/index.js"
+    ></script>
+
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/index.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-core/lib/umd/locales/en-US.js"
+    ></script>
+    <link
+      crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://unpkg.com/@univerjs/preset-sheets-core/lib/index.css"
+    />
+
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-drawing/lib/umd/index.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-drawing/lib/umd/locales/en-US.js"
+    ></script>
+    <link
+      crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://unpkg.com/@univerjs/preset-sheets-drawing/lib/index.css"
+    />
+
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-advanced/lib/umd/index.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://unpkg.com/@univerjs/preset-sheets-advanced/lib/umd/locales/en-US.js"
+    ></script>
+    <link
+      crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://unpkg.com/@univerjs/preset-sheets-advanced/lib/index.css"
+    />
+
+    <style>
+      html,
+      body,
+      #univer {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="univer"></div>
+
+    <script>
+      const { createUniver } = UniverPresets;
+      const { LocaleType, merge } = UniverCore;
+      const { defaultTheme } = UniverDesign;
+      const { UniverSheetsCorePreset } = UniverPresetSheetsCore;
+      const { UniverSheetsDrawingPreset } = UniverPresetSheetsDrawing;
+      const { UniverSheetsAdvancedPreset } = UniverPresetSheetsAdvanced;
+
+      const { univerAPI } = createUniver({
+        locale: LocaleType.EN_US,
+        locales: {
+          [LocaleType.EN_US]: merge(
+            {},
+            UniverPresetSheetsCoreEnUS,
+            UniverPresetSheetsDrawingEnUS,
+            UniverPresetSheetsAdvancedEnUS
+          ),
+        },
+        theme: defaultTheme,
+        presets: [
+          UniverSheetsCorePreset({
+            container: 'univer',
+          }),
+          UniverSheetsDrawingPreset(),
+          UniverSheetsAdvancedPreset(),
+        ],
+      });
+
+      univerAPI.createUniverSheet({ name: 'Test Sheet' });
+    </script>
+  </body>
+</html>
